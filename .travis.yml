@@ -1,0 +1,36 @@
+sudo: required
+language: r
+warnings_are_errors: false
+
+services:
+  - docker
+
+before_install:
+- docker pull rocker/geospatial
+- docker run -it --rm --entrypoint /bin/bash rocker/geospatial
+
+
+# r_packages:
+#   - dotCall64
+#   - mcmc
+#   - spam
+#   - MCMCpack
+#   - polynom
+#   - Deriv
+#   - doParallel
+#   - fields
+#   - HKprocess
+#   - matrixStats
+#   - numDeriv
+#   - orthopolynom
+#   - pixmap
+#   - sn
+
+
+jobs:
+  include:
+
+    - stage: Who knows
+      install: true
+      script:
+        - R -e 'print(2+2)'
