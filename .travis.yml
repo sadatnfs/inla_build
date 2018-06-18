@@ -6,9 +6,13 @@ dist: stretch
 os:
   - linux
 
-before_install:
-  - sudo apt-get update -qq
-  - sudo apt-get install -qq aptitude wget libgsl libgsl-dev  libgsl0-dev libgsl2
+apt_packages:
+  - aptitude 
+  - wget 
+  - libgsl 
+  - libgsl-dev 
+  - libgsl0-dev 
+  - libgsl2
 
 
 # services:
