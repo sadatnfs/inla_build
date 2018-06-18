@@ -20,7 +20,7 @@ services:
 
 before_install:
   - docker pull rocker/geospatial
-  - docker run -it --rm --entrypoint /bin/bash rocker/geospatial
+  - docker run /bin/bash rocker/geospatial -c 'R -e "print('tH')"'
 
 
 # r_packages:
@@ -42,10 +42,6 @@ before_install:
 
 jobs:
   include:
-
-    - stage: Install package dependencies
-      r: 3.5
-      install:
-        - ./bin/install_dependencies.sh
-      script: true
-
+    - stage: Simple install test
+      script:
+        - ./run_and_test.sh
