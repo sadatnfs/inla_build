@@ -8,8 +8,6 @@ os:
   - linux
 
 apt_packages:
-  - libmetis-dev
-  - libmetis5
   - aptitude
   - libgsl
   - libgsl-dev 
