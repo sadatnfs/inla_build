@@ -37,11 +37,11 @@ before_install:
 
 jobs:
   include:
-    - stage: Get libraries through aptitude and clone INLA from Bitbucket
+    - stage: All builds in one stage
       r: release
-      install: ./bin/01_clone_and_download_deps.sh
+      install: true
       script: 
-        - aptitude install -y gsl-bin libgsl0-dev
+        - ./bin/01_clone_and_download_deps.sh
         - ./bin/02_build_inla.sh
 
     # - stage: Build all the binaries
