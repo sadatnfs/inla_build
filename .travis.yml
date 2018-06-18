@@ -31,7 +31,7 @@ r_packages:
   - doParallel
 
 
-before_install:
+before_install:  
   - chmod +x bin/01_clone_and_download_deps.sh
   - chmod +x bin/02_build_inla.sh
 
@@ -41,6 +41,7 @@ jobs:
       r: release
       install: ./bin/01_clone_and_download_deps.sh
       script: 
+        - aptitude install -y gsl-bin libgsl0-dev
         - ./bin/02_build_inla.sh
 
     # - stage: Build all the binaries
