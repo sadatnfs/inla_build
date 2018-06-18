@@ -1,6 +1,19 @@
-sudo: required
 language: r
-warnings_are_errors: false
+
+sudo: required
+
+cache: packages
+
+os:
+  - linux
+
+
+apt_packages:
+    - graphviz
+    - librsvg2-dev
+    - libmetis-dev
+    - libmetis5
+
 
 services:
   - docker
@@ -30,7 +43,9 @@ before_install:
 jobs:
   include:
 
-    - stage: Who knows
-      install: true
-      script:
-        - R -e 'print(2+2)'
+    - stage: Install package dependencies
+      r: 3.5
+      install:
+        - ./bin/install_dependencies.sh
+      script: true
+
