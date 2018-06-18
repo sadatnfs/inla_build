@@ -9,39 +9,41 @@ os:
 
 
 apt_packages:
-    - graphviz
-    - librsvg2-dev
-    - libmetis-dev
-    - libmetis5
+  - graphviz
+  - librsvg2-dev
+  - libmetis-dev
+  - libmetis5
+  - git
+  - mercurial
+  - aptitude
 
 
-services:
-  - docker
+# services:
+#   - docker
 
-before_install:
-  - docker pull rocker/geospatial
-  - docker run /bin/bash rocker/geospatial -c 'R -e "print('tH')"'
+# before_install:
+#   - docker pull rocker/geospatial
+#   - docker run /bin/bash rocker/geospatial -c 'R -e "print('tH')"'
 
 
-# r_packages:
-#   - dotCall64
-#   - mcmc
-#   - spam
-#   - MCMCpack
-#   - polynom
-#   - Deriv
-#   - doParallel
-#   - fields
-#   - HKprocess
-#   - matrixStats
-#   - numDeriv
-#   - orthopolynom
-#   - pixmap
-#   - sn
+r_packages:
+  - sp
+  - iterators
+  - foreach
+  - parallel
+  - doParallel
+  - data.table
 
 
 jobs:
   include:
-    - stage: Simple install test
+    - stage: Install libraries
+      r: 3.5
+      install: true
       script:
-        - ./run_and_test.sh
+        - make lib-install
+
+notifications:
+  email:
+    on_success: never
+    on_failure: never
