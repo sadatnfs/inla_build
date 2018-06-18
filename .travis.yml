@@ -6,6 +6,10 @@ dist: trusty
 os:
   - linux
 
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install -y libxml2-dev aptitude wget libgsl libgsl-dev libgsl0-dev r-mathlib
+
 addons:
   apt:
     packages:
@@ -16,10 +20,6 @@ addons:
       - libgsl-dev 
       - libgsl0-dev 
       - r-mathlib
-
-before_install:
-  - sudo apt-get update
-  - sudp apt-get install -y libxml2-dev aptitude wget libgsl libgsl-dev libgsl0-dev r-mathlib
 
 
 # services:
