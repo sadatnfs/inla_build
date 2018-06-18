@@ -1,4 +1,4 @@
-language: r
+language: c
 sudo: required
 cache: packages
 dist: trusty
@@ -7,12 +7,12 @@ os:
   - linux
 
 apt_packages:
-  - aptitude 
+  - aptitude
   - wget 
   - libgsl 
   - libgsl-dev 
   - libgsl0-dev 
-  - libgsl2
+  - r-mathlib
 
 
 # services:
@@ -23,12 +23,12 @@ apt_packages:
 #   - docker run /bin/bash rocker/geospatial -c 'R -e "print('tH')"'
 
 
-r_packages:
-  - sp
-  - iterators
-  - foreach
-  - parallel
-  - doParallel
+# r_packages:
+#   - sp
+#   - iterators
+#   - foreach
+#   - parallel
+#   - doParallel
 
 
 before_install:  
