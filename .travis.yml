@@ -1,18 +1,14 @@
 language: r
-
 sudo: required
-
 cache: packages
+dist: stretch
 
 os:
   - linux
 
-apt_packages:
-  - aptitude
-  - libgsl
-  - libgsl-dev 
-  - libgsl0-dev 
-  - libgsl2
+before_install:
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq aptitude wget libgsl libgsl-dev  libgsl0-dev libgsl2
 
 
 # services:
@@ -33,33 +29,15 @@ r_packages:
 
 jobs:
   include:
-    - stage: Get libraries through aptitude
+    - stage: Get libraries through aptitude and clone INLA from Bitbucker
       r: 3.5
       install: true
-      script:
-        - cd /home/travis/R-bin/lib/R/library
-        - wget https://gist.githubusercontent.com/sadatnfs/e8a0ca5fe821fb4d95b2b944face8fb3/raw/2167a0ec0c77008fe5955e62ff25a01a2ae6e08f/Makefile
-        - sudo make lib-install
-
-    - stage: Clone INLA from Bitbucket
-      r: 3.5
-      install: true
-      script:
-        - cd /home/travis/R-bin/lib/R/library
-        - sudo make download -d 
+      script: ./01_clone_and_download_deps.sh
 
     - stage: Build all the binaries
       r: 3.5
-      install: true
-      script:
-        - sudo make bin
-        - sudo mv inla/rinla/R/obsolete/* inla/rinla/R/ 
-        - sudo make package 
-        - R --vanilla CMD INSTALL /home/travis/R-bin/lib/R/library/tmp/RINLA/INLA_*.tgz 
-        - sudo ln -s /home/travis/R-bin/lib/R/library/INLA/bin/linux/64bit/fmesher.run /home/travis/R-bin/lib/R/library/INLA/bin/linux/64bit/fmesher.static 
-        - sudo ln -s /home/travis/R-bin/lib/R/library/INLA/bin/linux/32bit/fmesher.run /home/travis/R-bin/lib/R/library/INLA/bin/linux/32bit/fmesher.static 
-        - sudo ln -s /home/travis/R-bin/lib/R/library/INLA/bin/linux/64bit/inla.run /home/travis/R-bin/lib/R/library/INLA/bin/linux/64bit/inla.static 
-        - sudo ln -s /home/travis/R-bin/lib/R/library/INLA/bin/linux/32bit/inla.run /home/travis/R-bin/lib/R/library/INLA/bin/linux/32bit/inla.static
+      script: ./02_build_inla.sh
+
 
 notifications:
   email:
