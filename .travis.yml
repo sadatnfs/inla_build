@@ -36,11 +36,11 @@ jobs:
     - stage: Get libraries through aptitude and clone INLA from Bitbucker
       r: 3.5
       install: true
-      script: ./01_clone_and_download_deps.sh
+      script: ./bin/01_clone_and_download_deps.sh
 
     - stage: Build all the binaries
       r: 3.5
-      script: ./02_build_inla.sh
+      script: ./bin/02_build_inla.sh
 
 
 notifications:
