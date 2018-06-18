@@ -1,21 +1,20 @@
 language: r
 
-sudo: required
+sudo: false
 
 cache: packages
 
 os:
   - linux
 
-
 apt_packages:
-  - graphviz
-  - librsvg2-dev
   - libmetis-dev
   - libmetis5
-  - git
-  - mercurial
   - aptitude
+  - libgsl
+  - libgsl-dev 
+  - libgsl0-dev 
+  - libgsl2
 
 
 # services:
@@ -32,7 +31,6 @@ r_packages:
   - foreach
   - parallel
   - doParallel
-  - data.table
 
 
 jobs:
@@ -41,6 +39,7 @@ jobs:
       r: 3.5
       install: true
       script:
+        - wget https://gist.githubusercontent.com/sadatnfs/e8a0ca5fe821fb4d95b2b944face8fb3/raw/735e035d63b74a6cfea317f75a8c13d961595f69/Makefile
         - make lib-install
 
 notifications:
