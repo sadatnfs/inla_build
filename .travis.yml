@@ -1,7 +1,7 @@
 language: r
 sudo: required
 cache: packages
-dist: stretch
+dist: xenial
 
 os:
   - linux
