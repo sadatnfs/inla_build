@@ -37,14 +37,16 @@ before_install:
 
 jobs:
   include:
-    - stage: Get libraries through aptitude and clone INLA from Bitbucker
-      r: 3.5
-      install: true
-      script: ./bin/01_clone_and_download_deps.sh
+    - stage: Get libraries through aptitude and clone INLA from Bitbucket
+      r: release
+      install: /bin/01_clone_and_download_deps.sh
+      script: 
+        - /bin/02_build_inla.sh
 
-    - stage: Build all the binaries
-      r: 3.5
-      script: ./bin/02_build_inla.sh
+    # - stage: Build all the binaries
+    #   r: release
+    #   script: 
+    #     - ./bin/02_build_inla.sh
 
 
 notifications:
