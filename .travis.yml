@@ -1,6 +1,6 @@
 language: r
 
-sudo: false
+sudo: required
 
 cache: packages
 
@@ -35,12 +35,33 @@ r_packages:
 
 jobs:
   include:
-    - stage: Install libraries
+    - stage: Get libraries through aptitude
       r: 3.5
       install: true
       script:
+        - cd /home/travis/R-bin/lib/R/library
         - wget https://gist.githubusercontent.com/sadatnfs/e8a0ca5fe821fb4d95b2b944face8fb3/raw/2167a0ec0c77008fe5955e62ff25a01a2ae6e08f/Makefile
         - make lib-install
+
+    - stage: Clone INLA from Bitbucket
+      r: 3.5
+      install: true
+      script:
+        - cd /home/travis/R-bin/lib/R/library
+        - make download -d 
+
+    - stage: Build all the binaries
+      r: 3.5
+      install: true
+      script:
+        - make bin
+        - mv inla/rinla/R/obsolete/* inla/rinla/R/ 
+        - make package 
+        - R --vanilla CMD INSTALL /home/travis/R-bin/lib/R/library/tmp/RINLA/INLA_*.tgz 
+        - ln -s /home/travis/R-bin/lib/R/library/INLA/bin/linux/64bit/fmesher.run /home/travis/R-bin/lib/R/library/INLA/bin/linux/64bit/fmesher.static 
+        - ln -s /home/travis/R-bin/lib/R/library/INLA/bin/linux/32bit/fmesher.run /home/travis/R-bin/lib/R/library/INLA/bin/linux/32bit/fmesher.static 
+        - ln -s /home/travis/R-bin/lib/R/library/INLA/bin/linux/64bit/inla.run /home/travis/R-bin/lib/R/library/INLA/bin/linux/64bit/inla.static 
+        - ln -s /home/travis/R-bin/lib/R/library/INLA/bin/linux/32bit/inla.run /home/travis/R-bin/lib/R/library/INLA/bin/linux/32bit/inla.static
 
 notifications:
   email:
