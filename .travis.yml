@@ -46,14 +46,14 @@ jobs:
       install: true
       script:
         - cd /home/travis/R-bin/lib/R/library
-        - make download -d 
+        - sudo make download -d 
 
     - stage: Build all the binaries
       r: 3.5
       install: true
       script:
         - sudo make bin
-        - mv inla/rinla/R/obsolete/* inla/rinla/R/ 
+        - sudo mv inla/rinla/R/obsolete/* inla/rinla/R/ 
         - sudo make package 
         - R --vanilla CMD INSTALL /home/travis/R-bin/lib/R/library/tmp/RINLA/INLA_*.tgz 
         - sudo ln -s /home/travis/R-bin/lib/R/library/INLA/bin/linux/64bit/fmesher.run /home/travis/R-bin/lib/R/library/INLA/bin/linux/64bit/fmesher.static 
