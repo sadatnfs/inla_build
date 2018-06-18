@@ -19,6 +19,9 @@ addons:
       - libgsl0-dev 
       - r-recommended
       - r-mathlib
+      - r-cran-sp
+      - r-cran-foreach
+      - r-cran-iterators
 
 
 # services:
