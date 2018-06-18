@@ -16,12 +16,16 @@ addons:
       - libxml2-dev 
       - aptitude 
       - wget 
+      - gsl-bin
       - libgsl0-dev 
       - r-recommended
       - r-mathlib
       - r-cran-sp
       - r-cran-foreach
       - r-cran-iterators
+      - g++
+      - gcc
+      - gfortran
 
 
 # services:
