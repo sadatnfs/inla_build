@@ -6,9 +6,9 @@ dist: trusty
 os:
   - linux
 
-before_install:
-  - sudo apt-get update
-  - sudo apt-get install -y libxml2-dev aptitude wget libgsl0-dev r-mathlib
+# before_install:
+#   - sudo apt-get update
+#   - sudo apt-get install -y libxml2-dev aptitude wget libgsl0-dev r-mathlib
 
 addons:
   apt:
@@ -17,6 +17,7 @@ addons:
       - aptitude 
       - wget 
       - libgsl0-dev 
+      - r-recommended
       - r-mathlib
 
 
@@ -43,7 +44,7 @@ before_install:
 jobs:
   include:
     - stage: All builds in one stage
-      r: release
+      # r: release
       install: true
       script: 
         - ./bin/01_clone_and_download_deps.sh
