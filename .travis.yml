@@ -49,6 +49,10 @@ addons:
 #   - doParallel
 
 
+before_install:  
+  - chmod +x bin/01_clone_and_download_deps.sh
+  - chmod +x bin/02_build_inla.sh
+
 jobs:
   include:
     - stage: All builds in one stage
