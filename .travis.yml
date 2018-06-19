@@ -1,4 +1,4 @@
-language: c
+language: cpp
 sudo: required
 cache: packages
 dist: trusty
@@ -6,13 +6,17 @@ dist: trusty
 os:
   - linux
 
-# before_install:
-#   - sudo apt-get update
+before_install:
+    - sudo add-apt-repository 'deb [arch=amd64,i386] https://cran.rstudio.com/bin/linux/ubuntu trusty/'
 #   - sudo apt-get install -y libxml2-dev aptitude wget libgsl0-dev r-mathlib
 
 addons:
   apt:
     packages:
+      - build-essential
+      - ca-certificates
+      - openssl
+      - mercurial
       - libxml2-dev 
       - aptitude 
       - wget 
@@ -26,7 +30,8 @@ addons:
       - g++
       - gcc
       - gfortran
-
+      - make
+      - cmake
 
 # services:
 #   - docker
