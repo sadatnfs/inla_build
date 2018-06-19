@@ -1,13 +1,13 @@
 language: cpp
 sudo: required
 cache: packages
-dist: trusty
+dist: xenial
 
 os:
   - linux
 
 before_install:
-    - sudo add-apt-repository 'deb [arch=amd64,i386] https://cran.rstudio.com/bin/linux/ubuntu trusty/'
+    - sudo add-apt-repository 'deb [arch=amd64,i386] https://cran.rstudio.com/bin/linux/ubuntu xenial/'
 #   - sudo apt-get install -y libxml2-dev aptitude wget libgsl0-dev r-mathlib
 
 addons:
