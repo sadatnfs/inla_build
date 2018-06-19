@@ -6,9 +6,9 @@ dist: xenial
 os:
   - linux
 
+## Add the R CRAN repository to pull in latest version on R
 before_install:
     - sudo add-apt-repository 'deb [arch=amd64,i386] https://cran.rstudio.com/bin/linux/ubuntu xenial/'
-#   - sudo apt-get install -y libxml2-dev aptitude wget libgsl0-dev r-mathlib
 
 addons:
   apt:
